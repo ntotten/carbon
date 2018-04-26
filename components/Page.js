@@ -3,10 +3,10 @@ import Meta from './Meta'
 import Header from './Header'
 import Footer from './Footer'
 
-export default ({ children, enableHeroText }) => (
+export default ({ children, enableHeroText, enableLogo }) => (
   <main className="main mt4 mb4">
     <Meta />
-    <Header enableHeroText={enableHeroText} />
+    <Header enableHeroText={enableHeroText} enableLogo={enableLogo} />
     <div className="page">{children}</div>
 
     <Footer />

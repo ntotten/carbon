@@ -1,12 +1,15 @@
 import React from 'react'
 import Logo from './svg/Logo'
 
-const Header = ({ enableHeroText }) => (
+const Header = ({ enableHeroText, enableLogo }) => (
   <header role="banner" className="header mb4">
     <div className="header-content">
-      <a id="link-home" href="/" aria-label="Home">
-        <Logo />
-      </a>
+       {enableLogo ? 
+       <a id="link-home" href="/" aria-label="Home">
+        <Logo /> 
+       </a>
+       : null }
+      
       {enableHeroText ? (
         <h2 className="mt3">
           Create and share beautiful images of your source code.<br /> Start typing or drop a file

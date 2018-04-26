@@ -5,6 +5,9 @@ import Spinner from 'react-spinner'
 import PhotoCredit from './PhotoCredit'
 import { fileToDataURL } from '../lib/util'
 
+const DOMAIN = process.env.REACT_APP_DOMAIN ? process.env.REACT_APP_DOMAIN : 
+  (process.browser ? document.location.origin : '')
+
 const downloadThumbnailImage = img => {
   return axios
     .get(img.url, { responseType: 'blob' })
@@ -14,7 +17,7 @@ const downloadThumbnailImage = img => {
 }
 
 const getImageDownloadUrl = img =>
-  axios.get(`/unsplash/download/${img.id}`).then(res => res.data.url)
+  axios.get(`${DOMAIN}/unsplash/download/${img.id}`).then(res => res.data.url)
 
 class RandomImage extends React.Component {
   constructor(props) {
@@ -37,7 +40,7 @@ class RandomImage extends React.Component {
   }
 
   async getImages() {
-    const imageUrls = await axios.get('/unsplash/random')
+    const imageUrls = await axios.get(`${DOMAIN}/unsplash/random`)
     return Promise.all(imageUrls.data.map(downloadThumbnailImage))
   }
 
